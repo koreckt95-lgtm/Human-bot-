@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: human-bot
+    runtime: python
+    buildCommand: |
+      apt-get update && apt-get install -y chromium chromium-driver
+      pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: HUMAN_EMAIL
+        sync: false
+      - key: HUMAN_PASSWORD
+        sync: false
+      - key: TELEGRAM_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: CHECK_INTERVAL_MINUTES
+        value: "60"
+      - key: PORT
+        value: "5000"
